@@ -1,4 +1,4 @@
-package dao;
+package com.atp53.atp.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;

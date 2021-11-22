@@ -1,5 +1,4 @@
-package dao;
-
+package com.atp53.atp.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,18 +6,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import model.CategoriaModel;
+import com.atp53.atp.models.ProdutoModel;
 
 
-public class CategoriaDao {
-    public void insert(CategoriaModel model){
+public class ProdutoDao {
+    public void insert(ProdutoModel model){
         try(Connection conn = new ConnectionFactory().getConnection()) {            
         	
             
-            String sql = "INSERT INTO categoria(nome,descricao)values(?,?)";
+            String sql = "INSERT INTO categoria(nome,descricao,preco,categoria_id)values(?,?,?,?)";
             PreparedStatement prepStatement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             prepStatement.setString(1, model.getNome());
             prepStatement.setString(2,model.getDescricao());
+            prepStatement.setDouble(3, model.getValor());
+            prepStatement.setInt(4,model.getIdCategoria());
 
             prepStatement.execute();            
             ResultSet ids = prepStatement.getGeneratedKeys();
@@ -31,19 +32,23 @@ public class CategoriaDao {
             e.printStackTrace();
         }
     }
-	public ArrayList<CategoriaModel> read() {
-        ArrayList<CategoriaModel> list = new ArrayList<CategoriaModel>();
+    
+	public ArrayList<ProdutoModel> read() {
+        ArrayList<ProdutoModel> list = new ArrayList<ProdutoModel>();
 
         try(Connection conn = new ConnectionFactory().getConnection()) {            
             
             PreparedStatement prepStatement = conn.prepareStatement("SELECT * FROM categoria");
             prepStatement.execute();
             ResultSet result = prepStatement.getResultSet();
+
             while(result.next()){
-                CategoriaModel model = new CategoriaModel();                
+                ProdutoModel model = new ProdutoModel();             
                 model.setId(result.getInt("id"));
                 model.setNome(result.getString("nome"));
                 model.setDescricao(result.getString("descricao"));
+                model.setValor(result.getDouble("preco"));
+                model.setIdCategoria(result.getInt("categoria_id"));
                 list.add(model);
             }
         } catch (SQLException e) {
@@ -51,15 +56,18 @@ public class CategoriaDao {
         }
         return list;
     }
-    public int update(CategoriaModel model) {
+
+    public int update(ProdutoModel model) {
         int linhasAfetadas = 0;
         try(Connection conn = new ConnectionFactory().getConnection()) {                 
             
-            String sql = "UPDATE categoria SET nome=?,descricao=? WHERE id = ?";            
+            String sql = "UPDATE categoria SET nome=?,descricao=?,preco=?,categoria_id=? WHERE id = ?";            
             PreparedStatement prepStatement = conn.prepareStatement(sql);
             prepStatement.setString(1, model.getNome());
             prepStatement.setString(2,model.getDescricao());
-            prepStatement.setInt(3, model.getId());
+            prepStatement.setDouble(3,model.getValor());
+            prepStatement.setInt(4, model.getIdCategoria());
+            prepStatement.setInt(5, model.getId());
 
             prepStatement.execute();  
                       
@@ -70,7 +78,7 @@ public class CategoriaDao {
         return linhasAfetadas;
     }
 
-    public int delete(CategoriaModel model) {
+    public int delete(ProdutoModel model) {
         int linhasAfetadas = 0;
         try(Connection conn = new ConnectionFactory().getConnection()) 
         {     

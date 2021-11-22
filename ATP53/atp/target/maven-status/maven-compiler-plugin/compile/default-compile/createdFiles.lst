@@ -1,7 +1,7 @@
-Categoria.class
-model\CategoriaModel.class
-model\ProdutoModel.class
-dao\ProdutoDao.class
-produto.class
-dao\CategoriaDao.class
-dao\ConnectionFactory.class
+com\atp53\atp\dao\ConnectionFactory.class
+com\atp53\atp\models\ProdutoModel.class
+com\atp53\atp\dao\ProdutoDao.class
+com\atp53\atp\dao\CategoriaDao.class
+com\atp53\atp\servlets\CategoriaServlet.class
+com\atp53\atp\servlets\ProdutoServlet.class
+com\atp53\atp\models\CategoriaModel.class
