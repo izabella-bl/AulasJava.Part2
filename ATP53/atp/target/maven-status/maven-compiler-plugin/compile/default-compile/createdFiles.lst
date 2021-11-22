@@ -1,2 +1,7 @@
 Categoria.class
+model\CategoriaModel.class
+model\ProdutoModel.class
+dao\ProdutoDao.class
 produto.class
+dao\CategoriaDao.class
+dao\ConnectionFactory.class
