@@ -22,7 +22,7 @@ public class produto  extends HttpServlet{
         String parametroValor =req.getParameter("preco");
         String paramentroIdCat = req.getParameter("categoria_id");
         
-        if(parametroValor != null){
+        if(parametroValor != null && paramentroIdCat != null){
 
             float valor = Float.parseFloat(parametroValor);
             int  idCat = Integer.parseInt(paramentroIdCat);
