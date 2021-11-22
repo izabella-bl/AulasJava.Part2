@@ -17,15 +17,16 @@ public class produto  extends HttpServlet{
 
          PrintWriter out = resp.getWriter();
 
-        String nome = req.getParameter("nome");
-        String parametroValor =req.getParameter("valor");
+        String parametroNome = req.getParameter("nome");
+        String parametroValor =req.getParameter("preco");
+        String paramentroIdCat = req.getParameter("categoria_id");
         
         if(parametroValor != null){
             float valor = Float.parseFloat(parametroValor);
-            out.printf("Modulo Produtos - Prod = %s - %f", nome, valor);
+            out.printf("Modulo Produtos - Prod = %s - R$ %f - Categoria: %s", parametroNome, valor, paramentroIdCat);
         }
         else{
-            out.printf("Modulo Produtos - Prod = %s", nome);
+            out.printf("Modulo Produtos - Prod = %s", parametroNome);
         }
     }
     

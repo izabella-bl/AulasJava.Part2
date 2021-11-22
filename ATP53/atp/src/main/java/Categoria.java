@@ -17,9 +17,10 @@ public class Categoria extends HttpServlet {
          */
 
          String nome = req.getParameter("nome");
+         String descricao = req.getParameter("descricao");
 
          PrintWriter out = resp.getWriter();
-         out.printf("Modulo Categoria : %s",nome);
+         out.printf("Modulo Categoria : %s ,Descrição: ",nome,descricao);
     }
     
 }
