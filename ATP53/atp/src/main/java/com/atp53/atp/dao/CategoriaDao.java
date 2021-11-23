@@ -11,7 +11,9 @@ import com.atp53.atp.models.CategoriaModel;
 
 
 public class CategoriaDao {
-    public void insert(CategoriaModel model){
+    
+    public int insert(CategoriaModel model){
+        int idGerado = 0 ;
         try(Connection conn = new ConnectionFactory().getConnection()) {            
         	
             
@@ -24,13 +26,14 @@ public class CategoriaDao {
             ResultSet ids = prepStatement.getGeneratedKeys();
 
             while(ids.next()){
-                int id = ids.getInt("id");
-                System.out.println(id);
+                idGerado= ids.getInt("id");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return idGerado;
     }
+
 	public ArrayList<CategoriaModel> read() {
         ArrayList<CategoriaModel> list = new ArrayList<CategoriaModel>();
 
@@ -51,6 +54,7 @@ public class CategoriaDao {
         }
         return list;
     }
+
     public int update(CategoriaModel model) {
         int linhasAfetadas = 0;
         try(Connection conn = new ConnectionFactory().getConnection()) {                 

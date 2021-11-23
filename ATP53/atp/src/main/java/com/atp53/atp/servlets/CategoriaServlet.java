@@ -2,6 +2,7 @@ package com.atp53.atp.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.atp53.atp.dao.CategoriaDao;
 import com.atp53.atp.models.CategoriaModel;
 
 import jakarta.servlet.ServletException;
@@ -14,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class CategoriaServlet extends HttpServlet {
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
          /*Atp53
          PrintWriter out = resp.getWriter();
          out.println("Modulo Categoria.");
@@ -24,13 +25,17 @@ public class CategoriaServlet extends HttpServlet {
          String nome = req.getParameter("nome");
          String descricao = req.getParameter("descricao");*/
 
-         CategoriaModel cat = new CategoriaModel();
+         CategoriaModel catModel = new CategoriaModel();
+         CategoriaDao  catDao = new CategoriaDao();
 
-         cat.setNome(req.getParameter("nome"));
-         cat.setDescricao(req.getParameter("descricao"));
+
+         catModel.setNome(req.getParameter("nome"));
+         catModel.setDescricao(req.getParameter("descricao"));
+         catModel.setId(catDao.insert(catModel));
+
 
          PrintWriter out = resp.getWriter();
-         out.printf("Modulo Categoria : %s ,Descricao: %s ",cat.getNome(),cat.getDescricao());
+         out.printf("ID- %d | Categoria : %s ,Descricao: %s ",catModel.getId(),catModel.getNome(),catModel.getDescricao());
     }
     
 }

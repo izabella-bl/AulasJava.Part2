@@ -1,7 +1,9 @@
 package com.atp53.atp.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 
+import com.atp53.atp.dao.ProdutoDao;
 import com.atp53.atp.models.ProdutoModel;
 
 import jakarta.servlet.ServletException;
@@ -14,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ProdutoServlet  extends HttpServlet{
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
          /*ATP53
          PrintWriter out = resp.getWriter();
          out.println("Modulo Produto.");*/
@@ -28,26 +30,29 @@ public class ProdutoServlet  extends HttpServlet{
         String paramentroIdCat = req.getParameter("categoria_id");*/
 
         PrintWriter out = resp.getWriter();
-        ProdutoModel prod = new ProdutoModel();
+        ProdutoModel prodModel = new ProdutoModel();
+        ProdutoDao prodDao = new ProdutoDao();
 
         String parametroValor = req.getParameter("preco");
         String paramentroIdCat = req.getParameter("categoria_id");
 
 
-        prod.setNome(req.getParameter("nome"));
-        prod.setDescricao(req.getParameter("descricao"));
+        prodModel.setNome(req.getParameter("nome"));
+        prodModel.setDescricao(req.getParameter("descricao"));
+
        
         
         if(parametroValor != "" && paramentroIdCat != ""){
 
-            double valor = Double.parseDouble(parametroValor);
             int  idCat = Integer.parseInt(paramentroIdCat);
-            prod.setValor(valor);
-            prod.setIdCategoria(idCat);
-            out.printf("Modulo Produtos - Prod = %s - Descricao: %s -R$ %f - Categoria: %d", prod.getNome(),prod.getDescricao(), prod.getValor(),prod.getIdCategoria());
+            prodModel.setValor(new BigDecimal(parametroValor));
+            prodModel.setIdCategoria(idCat);
+            
+            prodModel.setId(prodDao.insert(prodModel));
+            out.printf("ID %d - Modulo Produtos - Prod = %s - Descricao: %s -R$ %f - Categoria: %d",prodModel.getId(),prodModel.getNome(),prodModel.getDescricao(), prodModel.getValor(),prodModel.getIdCategoria());
         }
         else{
-            out.printf("Modulo Produtos - Prod = %s", prod.getNome());
+            out.printf("Modulo Produtos - Prod = %s", prodModel.getNome());
         }
     }
     

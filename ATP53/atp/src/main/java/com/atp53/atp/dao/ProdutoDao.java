@@ -1,4 +1,5 @@
 package com.atp53.atp.dao;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,27 +11,29 @@ import com.atp53.atp.models.ProdutoModel;
 
 
 public class ProdutoDao {
-    public void insert(ProdutoModel model){
+    
+    public int insert(ProdutoModel model){
+        int idGerador = 0;
         try(Connection conn = new ConnectionFactory().getConnection()) {            
         	
             
-            String sql = "INSERT INTO categoria(nome,descricao,preco,categoria_id)values(?,?,?,?)";
+            String sql = "INSERT INTO produto(nome,descricao,preco,categoria_id)values(?,?,?,?)";
             PreparedStatement prepStatement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             prepStatement.setString(1, model.getNome());
             prepStatement.setString(2,model.getDescricao());
-            prepStatement.setDouble(3, model.getValor());
+            prepStatement.setBigDecimal(3, model.getValor());
             prepStatement.setInt(4,model.getIdCategoria());
 
             prepStatement.execute();            
             ResultSet ids = prepStatement.getGeneratedKeys();
 
             while(ids.next()){
-                int id = ids.getInt("id");
-                System.out.println(id);
+                idGerador = ids.getInt("id");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return idGerador;
     }
     
 	public ArrayList<ProdutoModel> read() {
@@ -38,7 +41,7 @@ public class ProdutoDao {
 
         try(Connection conn = new ConnectionFactory().getConnection()) {            
             
-            PreparedStatement prepStatement = conn.prepareStatement("SELECT * FROM categoria");
+            PreparedStatement prepStatement = conn.prepareStatement("SELECT * FROM produto");
             prepStatement.execute();
             ResultSet result = prepStatement.getResultSet();
 
@@ -47,7 +50,8 @@ public class ProdutoDao {
                 model.setId(result.getInt("id"));
                 model.setNome(result.getString("nome"));
                 model.setDescricao(result.getString("descricao"));
-                model.setValor(result.getDouble("preco"));
+                BigDecimal valor = new BigDecimal(result.getString("preco").replace(",","").replace("$", ""));
+                model.setValor(valor);
                 model.setIdCategoria(result.getInt("categoria_id"));
                 list.add(model);
             }
@@ -59,13 +63,14 @@ public class ProdutoDao {
 
     public int update(ProdutoModel model) {
         int linhasAfetadas = 0;
+       
         try(Connection conn = new ConnectionFactory().getConnection()) {                 
             
-            String sql = "UPDATE categoria SET nome=?,descricao=?,preco=?,categoria_id=? WHERE id = ?";            
+            String sql = "UPDATE produto SET nome=?,descricao=?,preco=?,categoria_id=? WHERE id = ?";            
             PreparedStatement prepStatement = conn.prepareStatement(sql);
             prepStatement.setString(1, model.getNome());
             prepStatement.setString(2,model.getDescricao());
-            prepStatement.setDouble(3,model.getValor());
+            prepStatement.setBigDecimal(3,model.getValor());
             prepStatement.setInt(4, model.getIdCategoria());
             prepStatement.setInt(5, model.getId());
 
@@ -82,7 +87,7 @@ public class ProdutoDao {
         int linhasAfetadas = 0;
         try(Connection conn = new ConnectionFactory().getConnection()) 
         {     
-            String sql = "DELETE FROM categoria WHERE id = ?";
+            String sql = "DELETE FROM  WHERE id = ?";
 
             try ( PreparedStatement prepStatement = conn.prepareStatement(sql)) {
                 prepStatement.setInt(1, model.getId());

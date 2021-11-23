@@ -1,4 +1,5 @@
 com\atp53\atp\dao\ConnectionFactory.class
+com\atp53\atp\servlets\ProdutoReadServlet.class
 com\atp53\atp\models\ProdutoModel.class
 com\atp53\atp\dao\ProdutoDao.class
 com\atp53\atp\dao\CategoriaDao.class

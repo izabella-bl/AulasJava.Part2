@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Cadastro de Categoria</h1>
-    <form action="/atp-1/categoria">
+    <form action="/atp-1/categoria" method="post">
         nome: <input type="text" name="nome" id="nome"><br />
         descricao: <input type="text" name="descricao" id="descricao"><br />
         <input type="submit" value="Salvar">
