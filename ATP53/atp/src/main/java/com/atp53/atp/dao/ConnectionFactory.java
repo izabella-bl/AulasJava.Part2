@@ -12,7 +12,7 @@ public class ConnectionFactory {
     private DataSource dataSource;
 
     public ConnectionFactory() {
-        ComboPooledDataSource pool = new ComboPooledDataSource("mysql");
+        ComboPooledDataSource pool = new ComboPooledDataSource();
         this.dataSource = pool;
     }
 

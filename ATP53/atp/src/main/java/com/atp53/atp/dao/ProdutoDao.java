@@ -41,7 +41,7 @@ public class ProdutoDao {
 
         try(Connection conn = new ConnectionFactory().getConnection()) {            
             
-            PreparedStatement prepStatement = conn.prepareStatement("SELECT * FROM produto");
+            PreparedStatement prepStatement = conn.prepareStatement("SELECT * FROM produto order by id asc");
             prepStatement.execute();
             ResultSet result = prepStatement.getResultSet();
 

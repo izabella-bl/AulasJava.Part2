@@ -1,8 +1,12 @@
+c:\Git\AulasJava.Part2\ATP53\atp\src\main\java\com\atp53\atp\servlets\Produto\ProdutoServlet.java
 c:\Git\AulasJava.Part2\ATP53\atp\src\main\java\com\atp53\atp\dao\ProdutoDao.java
 c:\Git\AulasJava.Part2\ATP53\atp\src\main\java\com\atp53\atp\models\ProdutoModel.java
 c:\Git\AulasJava.Part2\ATP53\atp\src\main\java\com\atp53\atp\dao\CategoriaDao.java
 c:\Git\AulasJava.Part2\ATP53\atp\src\main\java\com\atp53\atp\models\CategoriaModel.java
 c:\Git\AulasJava.Part2\ATP53\atp\src\main\java\com\atp53\atp\dao\ConnectionFactory.java
-c:\Git\AulasJava.Part2\ATP53\atp\src\main\java\com\atp53\atp\servlets\CategoriaServlet.java
-c:\Git\AulasJava.Part2\ATP53\atp\src\main\java\com\atp53\atp\servlets\ProdutoReadServlet.java
-c:\Git\AulasJava.Part2\ATP53\atp\src\main\java\com\atp53\atp\servlets\ProdutoServlet.java
+c:\Git\AulasJava.Part2\ATP53\atp\src\main\java\com\atp53\atp\servlets\Categoria\CategoriaReadServlet.java
+c:\Git\AulasJava.Part2\ATP53\atp\src\main\java\com\atp53\atp\servlets\Produto\ProdutoReadServlet.java
+c:\Git\AulasJava.Part2\ATP53\atp\src\main\java\com\atp53\atp\servlets\Categoria\CategoriaDelete.java
+c:\Git\AulasJava.Part2\ATP53\atp\src\main\java\com\atp53\atp\servlets\Categoria\CategoriaBuscarById.java
+c:\Git\AulasJava.Part2\ATP53\atp\src\main\java\com\atp53\atp\servlets\Categoria\CategoriaServlet.java
+c:\Git\AulasJava.Part2\ATP53\atp\src\main\java\com\atp53\atp\servlets\Categoria\CategoriaAlterar.java

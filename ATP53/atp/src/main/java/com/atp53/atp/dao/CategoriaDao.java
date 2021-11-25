@@ -34,12 +34,58 @@ public class CategoriaDao {
         return idGerado;
     }
 
+    public CategoriaModel readById(int id){
+        CategoriaModel model = new CategoriaModel();
+        try(Connection conn = new ConnectionFactory().getConnection()) {
+            PreparedStatement prepStatement = conn.prepareStatement("SELECT * FROM categoria WHERE id = ?");
+            prepStatement.setInt(1, id);
+            prepStatement.execute();
+            ResultSet result = prepStatement.getResultSet(); 
+            while(result.next()){
+                model.setId(result.getInt("id"));
+                model.setNome(result.getString("nome"));
+                break;
+            }            
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+        return model;
+    }
+
+    public ArrayList<CategoriaModel> read(String nome) {
+
+        ArrayList<CategoriaModel> list = new ArrayList<CategoriaModel>();
+        try(Connection conn = new ConnectionFactory().getConnection()) {
+            PreparedStatement prepStatement = conn.prepareStatement("SELECT * FROM categoria WHERE nome = ?");
+            prepStatement.setString(1, nome);
+            prepStatement.execute();
+            ResultSet result = prepStatement.getResultSet();
+            list = createList(result);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+        return list;
+    }
+
+    private ArrayList<CategoriaModel> createList(ResultSet result) throws SQLException {
+        ArrayList<CategoriaModel> list = new ArrayList<CategoriaModel>();
+        while(result.next()){
+            CategoriaModel model = new CategoriaModel();                
+            model.setId(result.getInt("id"));
+            model.setNome(result.getString("nome"));
+            model.setDescricao(result.getString("descricao"));
+            list.add(model);
+        }
+        return list;
+    }
+
 	public ArrayList<CategoriaModel> read() {
         ArrayList<CategoriaModel> list = new ArrayList<CategoriaModel>();
 
         try(Connection conn = new ConnectionFactory().getConnection()) {            
             
-            PreparedStatement prepStatement = conn.prepareStatement("SELECT * FROM categoria");
+            PreparedStatement prepStatement = conn.prepareStatement("SELECT * FROM categoria order by id asc");
             prepStatement.execute();
             ResultSet result = prepStatement.getResultSet();
             while(result.next()){

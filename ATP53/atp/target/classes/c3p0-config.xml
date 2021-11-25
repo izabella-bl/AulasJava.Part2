@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <c3p0-config>
     <default-config>
-        <named-config name= "mysql"></named-config>
         <property name="driverClass">org.postgresql.Driver</property>
         <property name="jdbcUrl">jdbc:postgresql://localhost:5432/postgres</property>
         <property name="user">postgres</property>

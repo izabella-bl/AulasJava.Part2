@@ -1,4 +1,4 @@
-package com.atp53.atp.servlets;
+package com.atp53.atp.servlets.Produto;
 
 import java.io.IOException;
 import java.io.PrintWriter;

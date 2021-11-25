@@ -1,8 +1,12 @@
-com\atp53\atp\dao\ConnectionFactory.class
-com\atp53\atp\servlets\ProdutoReadServlet.class
-com\atp53\atp\models\ProdutoModel.class
+com\atp53\atp\servlets\Categoria\CategoriaServlet.class
 com\atp53\atp\dao\ProdutoDao.class
 com\atp53\atp\dao\CategoriaDao.class
-com\atp53\atp\servlets\CategoriaServlet.class
-com\atp53\atp\servlets\ProdutoServlet.class
+com\atp53\atp\servlets\Categoria\CategoriaBuscarById.class
+com\atp53\atp\servlets\Categoria\CategoriaAlterar.class
+com\atp53\atp\servlets\Categoria\CategoriaReadServlet.class
 com\atp53\atp\models\CategoriaModel.class
+com\atp53\atp\servlets\Categoria\CategoriaDelete.class
+com\atp53\atp\dao\ConnectionFactory.class
+com\atp53\atp\models\ProdutoModel.class
+com\atp53\atp\servlets\Produto\ProdutoServlet.class
+com\atp53\atp\servlets\Produto\ProdutoReadServlet.class
