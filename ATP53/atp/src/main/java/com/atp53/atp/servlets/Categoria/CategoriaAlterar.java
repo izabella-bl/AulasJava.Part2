@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class CategoriaAlterar extends HttpServlet {
      
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         String nome = req.getParameter("nome");
         String descricao = req.getParameter("descricao");

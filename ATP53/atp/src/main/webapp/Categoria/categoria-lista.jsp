@@ -34,8 +34,8 @@
                     <td><%= model.getNome() %></td>
                     <td><%= model.getDescricao() %></td>
                     <td>
-                        <a href="/atp-1/carregar?id=<%= model.getId() %>">Alterar</a> |
-                        <a href="/atp-1/deletar?id=<%= model.getId() %>">Deletar</a>
+                        <a href="/atp-1/categoria/carregar?id=<%= model.getId() %>">Alterar</a> |
+                        <a href="/atp-1/categoria/deletar?id=<%= model.getId() %>">Deletar</a>
                     </td>
                 </tr>
             <%}%>
