@@ -1,7 +1,7 @@
 <%@ page import="com.atp53.atp.models.CategoriaModel" %>
 
 <%
-    Categoria model = (Categoria)request.getAttribute("model");
+    CategoriaModel model = (CategoriaModel)request.getAttribute("model");
 %>
 
 

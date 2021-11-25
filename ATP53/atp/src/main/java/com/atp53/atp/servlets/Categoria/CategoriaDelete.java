@@ -26,7 +26,7 @@ public class CategoriaDelete extends HttpServlet{
          catDao.delete(model);
 
          
-        RequestDispatcher rd = req.getRequestDispatcher("/Categoria/categoria/listar");
+        RequestDispatcher rd = req.getRequestDispatcher("/categoria/listar");
         rd.forward(req, resp);
      
 
